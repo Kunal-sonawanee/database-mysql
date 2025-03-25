@@ -1,0 +1,36 @@
+SELECT 
+    select_list
+FROM (select statement) a_table
+WHERE
+
+---------------
+select avg(sumsal) from (select sum(sal) sumsal from emp group by deptno) e;
++-------------+
+| avg(sumsal) |
++-------------+
+| 9675.000000 |
++-------------+
+1 row in set (0.071 sec)
+
+ 
+
+
+
+SELECT 
+    select_list
+FROM
+    a_table
+WHERE
+    [NOT] EXISTS(subquery);
+------------------------
+select * from emp where exists
+ (select * from emp where sal =
+ (select max(sal) from emp) and deptno=10);
+--------------------
+select * from emp e1 
+where exists ( select 1 from emp e2
+                          where e1.empno=e2.mgr);
+---------------
+select * from emp where empno in(select distinct mgr from emp);
+
+ 
